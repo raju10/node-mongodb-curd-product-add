@@ -3,7 +3,7 @@ const bodyParser = require("body-parser");
 const password = "ArifulIslamRaju000";
 const ObjectId = require("mongodb").ObjectID;
 const MongoClient = require("mongodb").MongoClient;
-
+const port = 5000;
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -65,4 +65,4 @@ client.connect((err) => {
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
-app.listen(5000);
+app.listen(process.env.PORT || port);
