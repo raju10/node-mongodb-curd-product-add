@@ -7,8 +7,8 @@ const MongoClient = require("mongodb").MongoClient;
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-const uri =
-  "mongodb+srv://organicUser:ArifulIslamRaju000@cluster0.yaeov.mongodb.net/rajudb?retryWrites=true&w=majority";
+
+const uri = ` mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.yaeov.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -61,8 +61,8 @@ client.connect((err) => {
     console.log(req.params.id);
   });
 });
-
+//////////////////
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
-app.listen(3000);
+app.listen(5000);
